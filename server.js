@@ -6,41 +6,21 @@ const connectDB = require('./config/database')
 require('dotenv').config({path: './config/.env'})
 const PORT = process.env.PORT
 const TodoTask = require('./models/todotask')//require the model variable from the models/todotask.js file we're exporting
+const homeRoutes = require('./routes/home')
+const editRoutes = require('./routes/edit')
+
+connectDB()
 
 //Middleware 
 app.set('view engine', 'ejs')
 app.use(express.static('public')) //tells express to use styling sheets
 app.use(express.urlencoded({extended: true}))
 
-connectDB()
+//Set Routes
+app.use('/', homeRoutes)
+app.use('/edit', editRoutes)
 
-//GET
-app.get('/', async (req, res) => {
-    try{
-        TodoTask.find({}, (err, tasks) => {
-            res.render('index.ejs', {todoTasks: tasks})
-        })
-    } catch (err) {
-        if (err) return res.status(500).send(err)
-    }
-})
-//POST
-app.post('/', async (req, res) => {
-    const todoTask = new TodoTask(
-        {
-            title: req.body.title,
-            content:req.body.content
-        }
-    )
-    try {
-        await todoTask.save()
-        console.log(todoTask)
-        res.redirect('/')
-    } catch (err) {
-       if (err) return res.status(500).send(err)
-       res.redirect('/')
-    }
-})
+
 //EDIT OR UPDATE METHOD
 app
     .route('/edit/:id')
