@@ -2,7 +2,8 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-require('dotenv').config()
+const connectDB = require('./config/database')
+require('dotenv').config({path: './config/.env'})
 PORT = process.env.PORT
 const TodoTask = require('./models/todotask')//require the model variable from the models/todotask.js file we're exporting
 
@@ -11,10 +12,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('public')) //tells express to use styling sheets
 app.use(express.urlencoded({extended: true}))
 
+connectDB()
 
-mongoose.connect(process.env.DB_STRING,
-    {useNewUrlParser: true },
-    () => {console.log('Connected to DB!')})
 //GET
 app.get('/', async (req, res) => {
     try{
@@ -77,5 +76,4 @@ app
             res.redirect('/')
          })
     })
-    
 app.listen(process.env.PORT || PORT, () => console.log(`Server is running!`))
