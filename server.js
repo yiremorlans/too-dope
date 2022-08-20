@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const connectDB = require('./config/database')
 require('dotenv').config({path: './config/.env'})
-PORT = process.env.PORT
+const PORT = process.env.PORT
 const TodoTask = require('./models/todotask')//require the model variable from the models/todotask.js file we're exporting
 
 //Middleware 
