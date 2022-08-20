@@ -1,4 +1,4 @@
-//Declare variables
+// Declare variables
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -11,49 +11,14 @@ const editRoutes = require('./routes/edit')
 
 connectDB()
 
-//Middleware 
+// Middleware 
 app.set('view engine', 'ejs')
 app.use(express.static('public')) //tells express to use styling sheets
 app.use(express.urlencoded({extended: true}))
 
-//Set Routes
+// Set Routes
 app.use('/', homeRoutes)
 app.use('/edit', editRoutes)
 
-
-//EDIT OR UPDATE METHOD
-app
-    .route('/edit/:id')
-    .get((req, res) => {
-        const id = req.params.id
-        TodoTask.find({}, (err,tasks) => {
-            res.render('edit.ejs', {
-                todoTasks:tasks, idTask: id})
-            })
-    })
-    .post((req, res) => {//post instead of put because forms DONOT support put requests. Elimates having to write clientside js.
-        const id = req.params.id
-        TodoTask.findByIdAndUpdate(
-            id,
-            {
-                title: req.body.title,
-                content: req.body.content
-            },
-            err => {
-                if (err) return res.status(500).send(err)
-                res.redirect('/')
-            }
-        )
-    })
-
-//DELETE
-app
-    .route('/remove/:id')
-    .get((req, res) => {
-        const id = req.params.id
-        TodoTask.findByIdAndRemove(id, err => { //remove instead of delete to avoid writing client side js (ie. fetch methods)
-            if (err) return res.status(500).send(err)
-            res.redirect('/')
-         })
-    })
+// Start server
 app.listen(process.env.PORT || PORT, () => console.log(`Server is running!`))

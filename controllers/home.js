@@ -1,3 +1,5 @@
+// First and foremost, our controller has to recognize what model
+
 const TodoTask = require('../models/todotask')
 
 module.exports = {
