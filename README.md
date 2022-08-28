@@ -15,6 +15,10 @@ Install and require all dependencies as well as dev dependency for the project. 
 
 The use of mongoose definitely streamlined the process of creating schemas to incorporate into the build. EJS is a good introductory to templating languages. However, I believe incorporating React into future CRUD builds will streamline many aspects of building client side functionality. A framework like TailwindCSS will also help build more flexible components rather than vanilla CSS.
 
+## Optimizations:
+
+Implemented MVC structure to the application with the additon of mongoose for schemas. The addition of routes for the server and model, view, controller architecture makes the code more organized and easier to make optimizations in the future.
+
 ## Examples:
 Take a look at another example of CRUD apps that I have in my own portfolio:
 
