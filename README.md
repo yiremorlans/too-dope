@@ -9,6 +9,15 @@ Simple CRUD todo list with MongoDB connectivity to store, create, edit, and dele
 
 **Tech used:** MEEN Stack - Mongoose(w/MongoDB), Express.js, EJS, Node.js, JavaScript, CSS, Nodemon
 
+```npm install```
+
+**Things to add**
+
+- Create a `.env` file and add the following as `key = value` 
+  - PORT: can be any port example: 3000
+  - DB_STRING: `your database URI` 
+ ---
+
 Install and require all dependencies as well as dev dependency for the project. Set up port to listen on local host. MongoDB connection was established, and incorporated Schemas to handle writing to database via Mongoose. The sever.js file was fleshed out to include middleware, via EJS as the view engine. The routes in server.js were established with get and post requests, instead of incorporating put and delete. Eliminated the need for client side JS by making use of form inputs via EJS on the front-end. I went beyond basic functionality in the CSS and incorporated SVG generated background with back-drop filter blur, and shadows to create an upscaled look. 
 
 ## Lessons Learned:
